@@ -6,7 +6,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CheckoutSolution {
 
-    List<SKU> availableSKUs = new ArrayList<>(List.of(
+    List<Character> availableSKUs = new ArrayList<>(List.of('A','B','C','D','E'));
+    List<SKU> skuCosts = new ArrayList<>(List.of(
             new SKU('A',new HashMap<>(Map.of(1,50,3,130,5,200))),
             new SKU('B',new HashMap<>(Map.of(1,30,2,45))),
             new SKU('C',new HashMap<>(Map.of(1,20))),
@@ -20,12 +21,12 @@ public class CheckoutSolution {
 
         for(char c : skus.toCharArray()){
 
-            if(!skuCost.containsKey((Character) c))
+            if(!availableSKUs.contains(c))
                 return -1;
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
         }
-
+        
         skuPerCheckout.forEach((sku, count) ->{
             Map<Integer,Integer> offers = skuCost.get(sku);
             var maxDiscountQt = Collections.max(offers.keySet());
@@ -40,8 +41,3 @@ public class CheckoutSolution {
 
 
 }
-
-
-
-
-
