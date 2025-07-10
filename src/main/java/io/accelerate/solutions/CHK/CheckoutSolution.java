@@ -18,33 +18,36 @@ public class CheckoutSolution {
 
         Map<Character, Integer> skuPerCheckout = new HashMap<>();
         //AtomicInteger total = new AtomicInteger();
-        var total = new AtomicInteger(0);
+        var total = 0;
 
         for(char c : skus.toCharArray()){
 
             if(!skuCost.containsKey((Character) c))
                 return -1;
 
-
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
             var maxDiscount =  skuCost.get(c).keySet().stream().max(Integer::compareTo).orElse(1);
             if(Objects.equals(skuPerCheckout.get(c),maxDiscount)){
                 System.out.println("reset");
-                total.addAndGet(skuPerCheckout.get(c) * skuCost.get(c).get(maxDiscount));
-                skuPerCheckout.put(c,0);
+                total += skuPerCheckout.get(c) * skuCost.get(c).get(maxDiscount);
+                skuPerCheckout.remove(c);
             }
         }
 
-        //add the remaining
-        skuPerCheckout.forEach((sku,count) -> {
-            System.out.println("here");
-                System.out.println(count);
-                total.addAndGet(skuCost.get(sku).get(1) * count);
-        });
+        if(skuPerCheckout.values())
+        for(char c : skuPerCheckout.keySet()){
 
-        return total.get();
+            var count = skuPerCheckout.get(c);
+            System.out.println("here");
+            System.out.println(count);
+            total += skuCost.get(c).get(1) * count;
+        }
+
+
+        return total;
     }
 
 
 }
+
