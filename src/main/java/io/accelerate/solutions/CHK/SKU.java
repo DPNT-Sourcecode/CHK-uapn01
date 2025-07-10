@@ -40,6 +40,11 @@ public class SKU {
         return total;
     }
 
+    public int getUnitPrice() {
+        return offers.get(1);
+    }
+
 
 
 }
+
