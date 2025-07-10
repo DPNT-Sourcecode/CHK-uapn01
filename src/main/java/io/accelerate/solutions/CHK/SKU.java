@@ -1,6 +1,8 @@
 package io.accelerate.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class SKU {
@@ -12,4 +14,20 @@ public class SKU {
         this.Id = Id;
         this.offers = offers;
     }
+
+
+
+    public Integer getTotal(int quantity){
+        //for now I will assume sorting
+        //TODO: change later
+        var quantities = offers.keySet();
+
+
+
+
+    }
+
+
+
 }
+
