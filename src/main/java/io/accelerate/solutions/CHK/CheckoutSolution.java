@@ -5,6 +5,7 @@ import io.accelerate.solutions.SUM.SumSolution;
 import java.sql.Array;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class CheckoutSolution {
 
@@ -52,7 +53,16 @@ public class CheckoutSolution {
 
             if(getSKUById(c) == null)
                 return -1;
+        }
 
+        List<Character> sortedByPrice = skus.chars()
+                .mapToObj(c -> (char) c).sorted((a, b) -> Integer.compare(
+                        getSKUById(b).getUnitPrice(),
+                        getSKUById(a).getUnitPrice())).toList();
+
+
+        for(char c : sortedByPrice){
+            
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
 
@@ -139,4 +149,5 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
