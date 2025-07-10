@@ -66,8 +66,10 @@ public class CheckoutSolution {
                 if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == discount.quantityNeeded){
                     totalCheckout.addAndGet(discount.price);
 
-                    for(char groupItem : skuPerCheckout.keySet()){
-                        skuPerCheckout.put(groupItem,skuPerCheckout.get(groupItem) - availableGroups.get(groupItem));
+                    for(char cartItem : skuPerCheckout.keySet()){
+                        if(groupKey.get().indexOf(cartItem) != -1){
+                            skuPerCheckout.put(cartItem,skuPerCheckout.get(cartItem) - availableGroups.get(cartItem));
+                        }
                     }
 
                     availableGroups.clear();
@@ -113,11 +115,3 @@ public class CheckoutSolution {
         return null;
     }
 }
-
-
-
-
-
-
-
-

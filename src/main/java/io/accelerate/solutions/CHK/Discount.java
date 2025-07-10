@@ -9,4 +9,3 @@ public class Discount {
         this.quantityNeeded = qnt;
     }
 }
-
