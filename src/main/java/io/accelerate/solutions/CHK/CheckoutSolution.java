@@ -34,7 +34,8 @@ public class CheckoutSolution {
             if(skuObj.freeSKU == null)
                 return;
 
-            if(count >= skuObj.requiredQtyForFree){
+            if(count >= skuObj.requiredQtyForFree
+            && skuPerCheckout.get(skuObj.freeSKU) != null){
                 var totalToRemove = skuPerCheckout.get(skuObj.freeSKU) - (count / skuObj.requiredQtyForFree);
                 skuPerCheckout.put(skuObj.freeSKU, Math.max(totalToRemove, 0));
             }
@@ -65,3 +66,4 @@ public class CheckoutSolution {
         return null;
     }
 }
+

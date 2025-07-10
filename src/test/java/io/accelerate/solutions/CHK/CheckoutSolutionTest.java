@@ -29,7 +29,11 @@ public class CheckoutSolutionTest {
         assertThat(chk.checkout("AABBEEEE"), equalTo(260));
         assertThat(chk.checkout("AAA"), equalTo(130));
         assertThat(chk.checkout("DDD"), equalTo(45));
+        assertThat(chk.checkout("EE"), equalTo(80));
+        assertThat(chk.checkout("EEB"), equalTo(80));
+        assertThat(chk.checkout("EEEEB"), equalTo(160));
         assertThat(chk.checkout("X"), equalTo(-1));
     }
 }
+
 
