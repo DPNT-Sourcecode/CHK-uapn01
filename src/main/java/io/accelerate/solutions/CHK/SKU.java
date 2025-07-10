@@ -8,7 +8,9 @@ public class SKU {
     Map<Integer, Integer> offers;
     Character freeSKU;
     Integer requiredQtyForFree;
-    Boolean hasGroupDiscount = false;
+    String groupDiscount;
+    Integer groupDiscountQuantity;
+    Integer groupDiscountPrice;
 
     SKU(Character id, HashMap<Integer,Integer> offers){
         this.Id = id;
@@ -21,10 +23,12 @@ public class SKU {
         this.requiredQtyForFree = requiredQtyForFree;
     }
 
-    SKU(Character id, HashMap<Integer,Integer> offers,Boolean hasGroupDiscount){
+    SKU(Character id, HashMap<Integer,Integer> offers,String groupDiscount,Integer groupDiscountQuantity, Integer groupDiscountPrice){
         this.Id = id;
         this.offers = offers;
-        this.hasGroupDiscount = hasGroupDiscount;
+        this.groupDiscount = groupDiscount;
+        this.groupDiscountQuantity = groupDiscountQuantity;
+        this.groupDiscountPrice = groupDiscountPrice;
     }
 
 
@@ -47,4 +51,5 @@ public class SKU {
 
 
 }
+
 
