@@ -8,8 +8,7 @@ public class SKU {
     Map<Integer, Integer> offers;
     Character freeSKU;
     Integer requiredQtyForFree;
-
-
+    
     SKU(Character id, HashMap<Integer,Integer> offers){
         this.Id = id;
         this.offers = offers;
@@ -41,3 +40,4 @@ public class SKU {
 
 
 }
+

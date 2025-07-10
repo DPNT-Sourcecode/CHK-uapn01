@@ -12,7 +12,8 @@ public class CheckoutSolution {
             new SKU('B',new HashMap<>(Map.of(1,30,2,45))),
             new SKU('C',new HashMap<>(Map.of(1,20))),
             new SKU('D',new HashMap<>(Map.of(1,15))),
-            new SKU('E',new HashMap<>(Map.of(1,40)),'B',2)
+            new SKU('E',new HashMap<>(Map.of(1,40)),'B',2),
+            new SKU('F',new HashMap<>(Map.of(1,10),'B',2)
     ));
 
 
@@ -66,4 +67,5 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
