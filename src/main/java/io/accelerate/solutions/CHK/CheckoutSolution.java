@@ -1,5 +1,6 @@
 package io.accelerate.solutions.CHK;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -17,8 +18,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
 
         Map<Character, Integer> skuPerCheckout = new HashMap<>();
-        //AtomicInteger total = new AtomicInteger();
-        var total = 0;
+        var total = new AtomicInteger();
 
         for(char c : skus.toCharArray()){
 
@@ -26,23 +26,13 @@ public class CheckoutSolution {
                 return -1;
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
-
-            var maxDiscount =  skuCost.get(c).keySet().stream().max(Integer::compareTo).orElse(1);
-            if(Objects.equals(skuPerCheckout.get(c),maxDiscount)){
-                System.out.println("reset");
-                total += skuPerCheckout.get(c) * skuCost.get(c).get(maxDiscount);
-                skuPerCheckout.remove(c);
-            }
         }
 
-        if(skuPerCheckout.values())
-        for(char c : skuPerCheckout.keySet()){
+        skuPerCheckout.forEach((sku, count) ->{
+            Map<Integer,Integer> offers = skuCost.get(sku);
+            var maxDiscountQt = Collections.max(offers.keySet());
 
-            var count = skuPerCheckout.get(c);
-            System.out.println("here");
-            System.out.println(count);
-            total += skuCost.get(c).get(1) * count;
-        }
+        });
 
 
         return total;
@@ -50,4 +40,5 @@ public class CheckoutSolution {
 
 
 }
+
 
