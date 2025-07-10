@@ -56,10 +56,16 @@ public class CheckoutSolution {
             if(groupDiscounts.keySet().stream()
                     .anyMatch(key -> key.indexOf(c) != -1)){
 
-                groupDiscounts.keySet().stream()
+                var groupKey = groupDiscounts.keySet().stream()
+                            .filter(key -> key.indexOf(c) != -1).findFirst();
+
                 availableGroups.put(c,availableGroups.getOrDefault(c,0) + 1);
 
-                if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == )
+                if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == 3){
+                    totalCheckout.addAndGet(groupDiscounts.get(groupKey).get(3));
+
+
+                }
             }
         }
 
@@ -101,5 +107,6 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
