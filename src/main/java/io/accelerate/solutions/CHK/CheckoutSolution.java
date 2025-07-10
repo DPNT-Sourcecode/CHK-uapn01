@@ -11,8 +11,13 @@ public class CheckoutSolution {
             new SKU('A',new HashMap<>(Map.of(1,50,3,130,5,200))),
             new SKU('B',new HashMap<>(Map.of(1,30,2,45))),
             new SKU('C',new HashMap<>(Map.of(1,20))),
-            new SKU('D',new HashMap<>(Map.of(1,15)))
+            new SKU('D',new HashMap<>(Map.of(1,15))),
+            new SKU('E',new HashMap<>(Map.of(1,40)))
     ));
+
+    Map<Character, Map<Integer,Character>> buyXgetYFree = new HashMap<>(
+        Map.of('E', new HashMap<>(2,'B'))
+    );
 
     public Integer checkout(String skus) {
 
@@ -45,4 +50,5 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
