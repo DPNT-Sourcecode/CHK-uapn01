@@ -2,6 +2,7 @@ package io.accelerate.solutions.CHK;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class CheckoutSolution {
@@ -16,8 +17,8 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
 
         Map<Character, Integer> skuPerCheckout = new HashMap<>();
-        AtomicInteger total = new AtomicInteger();
-
+        //AtomicInteger total = new AtomicInteger();
+        var total = 0;
         for(char c : skus.toCharArray()){
 
             if(!skuCost.containsKey((Character) c))
@@ -26,11 +27,15 @@ public class CheckoutSolution {
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
-
-            if(skuPerCheckout.get(c) == skuCost.get(c).keySet().stream().max())
+            var maxDiscount =  skuCost.get(c).keySet().stream().max(Integer::compareTo).orElse(1);
+            System.out.println(maxDiscount);
+            if(Objects.equals(skuPerCheckout.get(c),maxDiscount)){
+                total += skuPerCheckout.get(c) * skuCost.get(c).get(maxDiscount);
+                skuPerCheckout.put(c,0);
+            }
         }
 
-        skuPerCheckout.forEach((sku,count) -> {
+       /* skuPerCheckout.forEach((sku,count) -> {
 
             if(!skuCost.get(sku).containsKey(count)){
                 total.addAndGet(skuCost.get(sku).get(1) * count);
@@ -38,12 +43,13 @@ public class CheckoutSolution {
                 total.addAndGet(skuCost.get(sku).get(count));
             }
 
-        });
+        });*/
 
-        return total.get();
+        return total;
     }
 
 
 }
+
 
 
