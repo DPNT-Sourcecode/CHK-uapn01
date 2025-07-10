@@ -8,7 +8,7 @@ public class SKU {
 
 
     SKU(Character id, HashMap<Integer,Integer> offers){
-        this.Id = Id;
+        this.Id = id;
         this.offers = offers;
     }
 
@@ -31,5 +31,6 @@ public class SKU {
 
 
 }
+
 
 
