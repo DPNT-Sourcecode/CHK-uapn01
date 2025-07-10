@@ -26,24 +26,21 @@ public class CheckoutSolution {
             new SKU('P',new HashMap<>(Map.of(1,50,5,200))),
             new SKU('Q',new HashMap<>(Map.of(1,30,3,80))),
             new SKU('R',new HashMap<>(Map.of(1,50)),'Q',3),
-            new SKU('S',new HashMap<>(Map.of(1,20))),
-            new SKU('T',new HashMap<>(Map.of(1,20))),
+            new SKU('S',new HashMap<>(Map.of(1,20)),true),
+            new SKU('T',new HashMap<>(Map.of(1,20)),true),
             new SKU('U',new HashMap<>(Map.of(1,40)),'U',3),
             new SKU('V',new HashMap<>(Map.of(1,50,2,90,3,130))),
             new SKU('W',new HashMap<>(Map.of(1,20))),
-            new SKU('X',new HashMap<>(Map.of(1,17))),
-            new SKU('Y',new HashMap<>(Map.of(1,20))),
-            new SKU('Z',new HashMap<>(Map.of(1,21)))
+            new SKU('X',new HashMap<>(Map.of(1,17)),true),
+            new SKU('Y',new HashMap<>(Map.of(1,20)),true),
+            new SKU('Z',new HashMap<>(Map.of(1,21)),true)
     ));
-
-    Map<List<Character>,Integer> groupDiscounts = new HashMap<>(
-      Map.of(new ArrayList<>(List.of('S','T','X','Y','Z')),45)
-    );
 
     public Integer checkout(String skus) {
 
         Map<Character, Integer> skuPerCheckout = new HashMap<>();
         var totalCheckout = new AtomicInteger();
+        Map<Character,Integer> groupDiscounts = new HashMap<>();
 
         for(char c : skus.toCharArray()){
 
@@ -51,6 +48,10 @@ public class CheckoutSolution {
                 return -1;
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
+
+            if(getSKUById(c).hasGroupDiscount){
+
+            }
         }
 
         skuPerCheckout.forEach((sku, count) ->{
@@ -91,6 +92,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
