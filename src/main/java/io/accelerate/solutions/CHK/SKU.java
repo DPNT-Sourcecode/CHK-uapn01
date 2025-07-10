@@ -1,9 +1,6 @@
 package io.accelerate.solutions.CHK;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SKU {
     Character Id;
@@ -15,19 +12,24 @@ public class SKU {
         this.offers = offers;
     }
 
-
-
     public Integer getTotal(int quantity){
-        //for now I will assume sorting
-        //TODO: change later
-        var quantities = offers.keySet();
+        //need to start with the larger discounts
+        List<Integer> quantities = new ArrayList<>(offers.keySet());
+        quantities.sort(Collections.reverseOrder());
 
+        var remainingToCheckout = quantity;
+        var total = 0;
 
+        for(var qt : quantities){
+            total += (remainingToCheckout / qt) * quantities.get(qt);
+            remainingToCheckout %= qt;
+        }
 
-
+        return total;
     }
 
 
 
 }
+
 
