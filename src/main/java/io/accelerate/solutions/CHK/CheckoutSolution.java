@@ -18,7 +18,7 @@ public class CheckoutSolution {
             new SKU('H',new HashMap<>(Map.of(1,10,5,45,10,80))),
             new SKU('I',new HashMap<>(Map.of(1,35))),
             new SKU('J',new HashMap<>(Map.of(1,60))),
-            new SKU('K',new HashMap<>(Map.of(1,80,2,150))),
+            new SKU('K',new HashMap<>(Map.of(1,70,2,120))),
             new SKU('L',new HashMap<>(Map.of(1,90))),
             new SKU('M',new HashMap<>(Map.of(1,15))),
             new SKU('N',new HashMap<>(Map.of(1,40)),'M',3),
@@ -26,16 +26,19 @@ public class CheckoutSolution {
             new SKU('P',new HashMap<>(Map.of(1,50,5,200))),
             new SKU('Q',new HashMap<>(Map.of(1,30,3,80))),
             new SKU('R',new HashMap<>(Map.of(1,50)),'Q',3),
-            new SKU('S',new HashMap<>(Map.of(1,30))),
+            new SKU('S',new HashMap<>(Map.of(1,20))),
             new SKU('T',new HashMap<>(Map.of(1,20))),
             new SKU('U',new HashMap<>(Map.of(1,40)),'U',3),
             new SKU('V',new HashMap<>(Map.of(1,50,2,90,3,130))),
             new SKU('W',new HashMap<>(Map.of(1,20))),
-            new SKU('X',new HashMap<>(Map.of(1,90))),
-            new SKU('Y',new HashMap<>(Map.of(1,10))),
-            new SKU('Z',new HashMap<>(Map.of(1,50)))
+            new SKU('X',new HashMap<>(Map.of(1,17))),
+            new SKU('Y',new HashMap<>(Map.of(1,20))),
+            new SKU('Z',new HashMap<>(Map.of(1,21)))
     ));
 
+    Map<List<Character>,Integer> groupDiscounts = new HashMap<>(
+      Map.of(new ArrayList<>(List.of('S','T','X','Y','Z')),45)
+    );
 
     public Integer checkout(String skus) {
 
@@ -95,4 +98,5 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
