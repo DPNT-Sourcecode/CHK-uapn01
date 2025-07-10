@@ -66,7 +66,16 @@ public class CheckoutSolution {
                 if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == discount.quantityNeeded){
                     totalCheckout.addAndGet(discount.price);
 
-                    for(char cartItem : skuPerCheckout.keySet()){
+                    List<Character> sortedByPrice = skuPerCheckout.keySet().stream()
+                            .toList();
+
+                    sortedByPrice.sort(
+                            (a,b) -> Integer.compare(
+                                    getSKUById(b).getUnitPrice(),
+                                    getSKUById(a).getUnitPrice())
+                    );
+
+                    for(char cartItem : sortedByPrice){
                         if(groupKey.get().indexOf(cartItem) != -1){
                             skuPerCheckout.put(cartItem,skuPerCheckout.get(cartItem) - );
                         }
@@ -115,5 +124,6 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
