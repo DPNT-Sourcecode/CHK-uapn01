@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CheckoutSolution {
 
     Map<Character,Map<Integer,Integer>> skuCost = new HashMap<>(
-            Map.of('A',new HashMap<>(Map.of(1,50,3,130)),
+            Map.of('A',new HashMap<>(Map.of(1,50,3,130,5,200)),
                     'B',new HashMap<>(Map.of(1,30,2,45)),
                     'C',new HashMap<>(Map.of(1,20)),
                     'D',new HashMap<>(Map.of(1,15)))
@@ -42,6 +42,7 @@ public class CheckoutSolution {
 
 
 }
+
 
 
 
