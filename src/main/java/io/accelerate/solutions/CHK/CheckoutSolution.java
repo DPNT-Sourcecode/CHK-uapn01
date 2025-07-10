@@ -29,19 +29,28 @@ public class CheckoutSolution {
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
         }
 
+        skuPerCheckout.forEach((sku, count) ->{
+            var skuObj  = getSKUById(sku);
+            if(skuObj.freeSKU == null)
+                return;
+
+            if(count >= skuObj.requiredQtyForFree){
+                var totalToRemove = skuPerCheckout.get(skuObj.freeSKU) - (count / skuObj.requiredQtyForFree);
+                skuPerCheckout.put(skuObj.freeSKU, Math.max(totalToRemove, 0));
+            }
+        });
 
         skuPerCheckout.forEach((sku, count) ->{
-            System.out.println(sku);
-            System.out.println(count);
+
             var skuObj  = getSKUById(sku);
             totalCheckout.addAndGet(skuObj.getTotal(count));
-
+            /*
             if(skuObj.freeSKU != null){
                 if(count >= skuObj.requiredQtyForFree){
                     System.out.println(getSKUById(skuObj.freeSKU).getTotal(1)*(count / skuObj.requiredQtyForFree)*-1);
                     totalCheckout.addAndGet(getSKUById(skuObj.freeSKU).getTotal(1)*(count / skuObj.requiredQtyForFree)*-1);
                 }
-            }
+            }*/
         });
 
 
@@ -56,10 +65,3 @@ public class CheckoutSolution {
         return null;
     }
 }
-
-
-
-
-
-
-
