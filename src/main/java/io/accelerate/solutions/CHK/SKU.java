@@ -20,9 +20,9 @@ public class SKU {
 
         var remainingToCheckout = quantity;
         var total = 0;
-        System.out.println(remainingToCheckout);
+
         for(var qt : offersQt){
-            total += ((remainingToCheckout / qt) * offersQt.get(qt));
+            total += ((remainingToCheckout / qt) * offers.get(qt));
             remainingToCheckout %= qt;
         }
 
@@ -32,4 +32,5 @@ public class SKU {
 
 
 }
+
 
