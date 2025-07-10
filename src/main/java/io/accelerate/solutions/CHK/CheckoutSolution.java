@@ -1,5 +1,7 @@
 package io.accelerate.solutions.CHK;
 
+import io.accelerate.solutions.SUM.SumSolution;
+
 import java.sql.Array;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -66,8 +68,8 @@ public class CheckoutSolution {
                 if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == discount.quantityNeeded){
                     totalCheckout.addAndGet(discount.price);
 
-                    List<Character> sortedByPrice = skuPerCheckout.keySet().stream()
-                            .toList();
+                    List<Character> sortedByPrice = new ArrayList<>(skuPerCheckout.keySet().stream()
+                            .toList());
 
                     sortedByPrice.sort(
                             (a,b) -> Integer.compare(
@@ -76,14 +78,15 @@ public class CheckoutSolution {
                     );
 
                     var toBeRemoved = 3;
+                    System.out.println(sortedByPrice);
+                    System.out.println(groupKey);
+                    System.out.println(c);
 
                     for(char cartItem : sortedByPrice){
                         if(groupKey.get().indexOf(cartItem) != -1 && toBeRemoved > 0){
-
-                            skuPerCheckout.put(cartItem,skuPerCheckout.get(cartItem) - Math.min(skuPerCheckout.get(cartItem),toBeRemoved));
-
-
-
+                            var min = Math.min(skuPerCheckout.get(cartItem),toBeRemoved);
+                            skuPerCheckout.put(cartItem,skuPerCheckout.get(cartItem) - min);
+                            toBeRemoved -= min;
                         }
                     }
 
@@ -130,6 +133,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
