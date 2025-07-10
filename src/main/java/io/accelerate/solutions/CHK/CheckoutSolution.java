@@ -14,7 +14,7 @@ public class CheckoutSolution {
             new SKU('D',new HashMap<>(Map.of(1,15))),
             new SKU('E',new HashMap<>(Map.of(1,40)),'B',2)
     ));
-    
+
 
     public Integer checkout(String skus) {
 
@@ -28,10 +28,7 @@ public class CheckoutSolution {
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
-            if(buyXgetYFree.containsKey(c)){
-                var offerQty = buyXgetYFree.get(c);
-                skuPerCheckout.get(c)
-            }
+            
         }
 
 
@@ -52,6 +49,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
