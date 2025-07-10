@@ -1,9 +1,8 @@
 package io.accelerate.solutions.CHK;
 
-import io.accelerate.runner.SolutionNotImplementedException;
-
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CheckoutSolution {
 
@@ -15,8 +14,23 @@ public class CheckoutSolution {
     );
 
     public Integer checkout(String skus) {
+        Map<Character, Integer> skuPerCheckout = new HashMap<>();
+        AtomicInteger total = new AtomicInteger();
+        for(char c : skus.toCharArray()){
+            skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
+        }
+
+        skuPerCheckout.forEach((sku,count) -> {
+            if(!skuCost.get(sku).containsKey(count)){
+                total.addAndGet(skuCost.get(sku).get(1) * count);
+            }else{
+                total.addAndGet(skuCost.get(sku).get(count));
+            }
+        });
+
 
     }
 }
+
 
 
