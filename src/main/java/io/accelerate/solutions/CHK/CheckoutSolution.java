@@ -77,13 +77,6 @@ public class CheckoutSolution {
 
             var skuObj  = getSKUById(sku);
             totalCheckout.addAndGet(skuObj.getTotal(count));
-            /*
-            if(skuObj.freeSKU != null){
-                if(count >= skuObj.requiredQtyForFree){
-                    System.out.println(getSKUById(skuObj.freeSKU).getTotal(1)*(count / skuObj.requiredQtyForFree)*-1);
-                    totalCheckout.addAndGet(getSKUById(skuObj.freeSKU).getTotal(1)*(count / skuObj.requiredQtyForFree)*-1);
-                }
-            }*/
         });
 
 
@@ -98,5 +91,6 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
