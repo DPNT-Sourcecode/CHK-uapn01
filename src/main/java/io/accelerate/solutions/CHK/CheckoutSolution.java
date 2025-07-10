@@ -13,7 +13,7 @@ public class CheckoutSolution {
             new SKU('C',new HashMap<>(Map.of(1,20))),
             new SKU('D',new HashMap<>(Map.of(1,15))),
             new SKU('E',new HashMap<>(Map.of(1,40)),'B',2),
-            new SKU('F',new HashMap<>(Map.of(1,10),'B',2)
+            new SKU('F',new HashMap<>(Map.of(1,10)),'F',2)
     ));
 
 
@@ -37,6 +37,9 @@ public class CheckoutSolution {
 
             if(count >= skuObj.requiredQtyForFree
             && skuPerCheckout.get(skuObj.freeSKU) != null){
+                if(skuObj.freeSKU.equals(sku) && count <= skuObj.requiredQtyForFree)
+                    return;
+                
                 var totalToRemove = skuPerCheckout.get(skuObj.freeSKU) - (count / skuObj.requiredQtyForFree);
                 skuPerCheckout.put(skuObj.freeSKU, Math.max(totalToRemove, 0));
             }
@@ -67,5 +70,6 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
