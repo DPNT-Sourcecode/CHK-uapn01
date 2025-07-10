@@ -6,12 +6,21 @@ import java.util.*;
 public class SKU {
     Character Id;
     Map<Integer, Integer> offers;
+    Character freeSKU;
+    Integer requiredQtyForFree;
 
 
     SKU(Character id, HashMap<Integer,Integer> offers){
         this.Id = id;
         this.offers = offers;
     }
+    SKU(Character id, HashMap<Integer,Integer> offers,Character freeSKU,Integer requiredQtyForFree){
+        this.Id = id;
+        this.offers = offers;
+        this.freeSKU = freeSKU;
+        this.requiredQtyForFree = requiredQtyForFree;
+    }
+
 
     public Integer getTotal(int quantity){
         //need to start with the larger discounts
@@ -32,5 +41,6 @@ public class SKU {
 
 
 }
+
 
 
