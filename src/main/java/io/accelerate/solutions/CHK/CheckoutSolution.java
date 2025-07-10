@@ -66,7 +66,7 @@ public class CheckoutSolution {
                 if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == discount.quantityNeeded){
                     totalCheckout.addAndGet(discount.price);
 
-                    for(char groupItem : availableGroups.keySet()){
+                    for(char groupItem : skuPerCheckout.keySet()){
                         skuPerCheckout.put(groupItem,skuPerCheckout.get(groupItem) - availableGroups.get(groupItem));
                     }
 
@@ -113,6 +113,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
