@@ -37,7 +37,7 @@ public class CheckoutSolution {
     ));
 
     Map<String, Discount> groupDiscounts = new HashMap<>(
-            Map.of("STXYZ",new Discount(3,45))
+            Map.of("STXYZ",new Discount(45,3))
     );
 
     public Integer checkout(String skus) {
@@ -55,6 +55,7 @@ public class CheckoutSolution {
 
             if(groupDiscounts.keySet().stream()
                     .anyMatch(key -> key.indexOf(c) != -1)){
+
 
                 var groupKey = groupDiscounts.keySet().stream()
                             .filter(key -> key.indexOf(c) != -1).findFirst();
@@ -112,6 +113,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
