@@ -21,10 +21,13 @@ public class CheckoutSolutionTest {
 
         assertThat(chk.checkout("AA"), equalTo(100));
         assertThat(chk.checkout("AAAA"), equalTo(180));
+        assertThat(chk.checkout("AAAAA"), equalTo(230));
+        assertThat(chk.checkout("AAAAAA"), equalTo(260));
         assertThat(chk.checkout("AABB"), equalTo(145));
         assertThat(chk.checkout("AAA"), equalTo(130));
         assertThat(chk.checkout("DDD"), equalTo(45));
         assertThat(chk.checkout("X"), equalTo(-1));
     }
 }
+
 

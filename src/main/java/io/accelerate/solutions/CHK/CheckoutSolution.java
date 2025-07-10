@@ -18,7 +18,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
 
         Map<Character, Integer> skuPerCheckout = new HashMap<>();
-        var total = new AtomicInteger();
+        var totalCheckout = new AtomicInteger();
 
         for(char c : skus.toCharArray()){
 
@@ -32,13 +32,16 @@ public class CheckoutSolution {
             Map<Integer,Integer> offers = skuCost.get(sku);
             var maxDiscountQt = Collections.max(offers.keySet());
 
+            var total = count/maxDiscountQt * offers.getOrDefault(maxDiscountQt,0) + (count % maxDiscountQt) * offers.get(1);
+            totalCheckout.addAndGet(total);
         });
 
 
-        return total;
+        return totalCheckout.get();
     }
 
 
 }
+
 
 
