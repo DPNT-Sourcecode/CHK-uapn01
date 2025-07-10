@@ -26,6 +26,8 @@ public class CheckoutSolution {
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
+
+            if(skuPerCheckout.get(c) == skuCost.get(c).keySet().stream().max())
         }
 
         skuPerCheckout.forEach((sku,count) -> {
@@ -43,4 +45,5 @@ public class CheckoutSolution {
 
 
 }
+
 
