@@ -1,5 +1,6 @@
 package io.accelerate.solutions.CHK;
 
+import java.io.FilterOutputStream;
 import java.util.*;
 
 public class SKU {
@@ -14,14 +15,14 @@ public class SKU {
 
     public Integer getTotal(int quantity){
         //need to start with the larger discounts
-        List<Integer> quantities = new ArrayList<>(offers.keySet());
-        quantities.sort(Collections.reverseOrder());
+        List<Integer> offersQt = new ArrayList<>(offers.keySet());
+        offersQt.sort(Collections.reverseOrder());
 
         var remainingToCheckout = quantity;
         var total = 0;
-
-        for(var qt : quantities){
-            total += (remainingToCheckout / qt) * quantities.get(qt);
+        System.out.println(remainingToCheckout);
+        for(var qt : offersQt){
+            total += ((remainingToCheckout / qt) * offersQt.get(qt));
             remainingToCheckout %= qt;
         }
 
@@ -31,3 +32,4 @@ public class SKU {
 
 
 }
+
