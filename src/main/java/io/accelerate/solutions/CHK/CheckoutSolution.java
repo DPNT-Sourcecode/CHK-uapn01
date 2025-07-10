@@ -28,9 +28,12 @@ public class CheckoutSolution {
             }
         });
 
-
+        return total.get();
     }
+
+
 }
+
 
 
 
