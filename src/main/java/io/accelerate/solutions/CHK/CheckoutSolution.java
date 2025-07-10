@@ -28,13 +28,19 @@ public class CheckoutSolution {
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
-            
+
         }
 
 
         skuPerCheckout.forEach((sku, count) ->{
             var skuObj  = getSKUById(sku);
             totalCheckout.addAndGet(skuObj.getTotal(count));
+
+            if(skuObj.freeSKU != null){
+                if(count >= skuObj.requiredQtyForFree){
+                    totalCheckout.addAndGet(getSKUById(skuObj.freeSKU).getTotal(1)*(count / skuObj.requiredQtyForFree)*-1);
+                }
+            }
         });
 
 
@@ -49,6 +55,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
