@@ -56,13 +56,11 @@ public class CheckoutSolution {
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
         }
 
-        skuPerCheckout.forEach((sku, count) ->{
-            var skuObj  = getSKUById(sku);
 
-
+        for(char sku : skus.toCharArray()){
             if(groupDiscounts.keySet().stream()
                     .anyMatch(key -> key.indexOf(sku) != -1)){
-                
+
                 var groupKey = groupDiscounts.keySet().stream()
                         .filter(key -> key.indexOf(sku) != -1).findFirst();
                 var discount = groupDiscounts.get(groupKey.get());
@@ -82,8 +80,7 @@ public class CheckoutSolution {
                     );
 
                     var toBeRemoved = 3;
-
-
+                    
                     for(char cartItem : sortedByPrice){
                         if(groupKey.get().indexOf(cartItem) != -1 && toBeRemoved > 0){
                             var min = Math.min(skuPerCheckout.get(cartItem),toBeRemoved);
@@ -98,6 +95,12 @@ public class CheckoutSolution {
                     availableGroups.clear();
                 }
             }
+        }
+
+
+
+        skuPerCheckout.forEach((sku, count) ->{
+            var skuObj  = getSKUById(sku);
 
 
             if(skuObj.freeSKU == null)
@@ -136,6 +139,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
