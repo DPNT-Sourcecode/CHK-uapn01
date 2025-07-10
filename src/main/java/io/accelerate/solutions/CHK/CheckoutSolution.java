@@ -80,7 +80,7 @@ public class CheckoutSolution {
                     );
 
                     var toBeRemoved = 3;
-                    
+
                     for(char cartItem : sortedByPrice){
                         if(groupKey.get().indexOf(cartItem) != -1 && toBeRemoved > 0){
                             var min = Math.min(skuPerCheckout.get(cartItem),toBeRemoved);
@@ -139,6 +139,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
