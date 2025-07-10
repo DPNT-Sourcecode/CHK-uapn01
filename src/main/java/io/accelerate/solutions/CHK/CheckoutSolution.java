@@ -36,8 +36,8 @@ public class CheckoutSolution {
             new SKU('Z',new HashMap<>(Map.of(1,21)))
     ));
 
-    Map<String, Map<Integer,Integer>> groupDiscounts = new HashMap<>(
-            Map.of("STXYZ",new HashMap<>(Map.of(3,45)))
+    Map<String, Discount> groupDiscounts = new HashMap<>(
+            Map.of("STXYZ",new Discount(3,45))
     );
 
     public Integer checkout(String skus) {
@@ -58,11 +58,12 @@ public class CheckoutSolution {
 
                 var groupKey = groupDiscounts.keySet().stream()
                             .filter(key -> key.indexOf(c) != -1).findFirst();
+                var discount = groupDiscounts.get(groupKey.get());
 
                 availableGroups.put(c,availableGroups.getOrDefault(c,0) + 1);
 
-                if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == 3){
-                    totalCheckout.addAndGet(groupDiscounts.get(groupKey.get()).get(3));
+                if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == discount.quantityNeeded){
+                    totalCheckout.addAndGet(discount.price);
 
                     for(char groupItem : availableGroups.keySet()){
                         skuPerCheckout.put(groupItem,skuPerCheckout.get(groupItem) - availableGroups.get(groupItem));
@@ -111,6 +112,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
