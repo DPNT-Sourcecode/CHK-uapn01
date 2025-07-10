@@ -75,9 +75,17 @@ public class CheckoutSolution {
                                     getSKUById(a).getUnitPrice())
                     );
 
+                    var toBeRemoved = 3;
+
                     for(char cartItem : sortedByPrice){
                         if(groupKey.get().indexOf(cartItem) != -1){
-                            skuPerCheckout.put(cartItem,skuPerCheckout.get(cartItem) - );
+                            if( skuPerCheckout.get(cartItem) > 3){
+                                skuPerCheckout.put(cartItem, skuPerCheckout.get(cartItem) - 3);
+                                break;
+                            }else{
+                                skuPerCheckout.put(cartItem, skuPerCheckout.get(cartItem) - 1);
+                            }
+
                         }
                     }
 
@@ -124,6 +132,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 
