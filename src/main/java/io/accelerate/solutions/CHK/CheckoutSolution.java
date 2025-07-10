@@ -17,6 +17,9 @@ public class CheckoutSolution {
         Map<Character, Integer> skuPerCheckout = new HashMap<>();
         AtomicInteger total = new AtomicInteger();
         for(char c : skus.toCharArray()){
+
+            if(!skuCost.containsKey((Character) c))
+                return -1;
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
         }
 
@@ -33,6 +36,7 @@ public class CheckoutSolution {
 
 
 }
+
 
 
 
