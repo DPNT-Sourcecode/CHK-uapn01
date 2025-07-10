@@ -44,7 +44,6 @@ public class CheckoutSolution {
 
         Map<Character, Integer> skuPerCheckout = new HashMap<>();
         var totalCheckout = new AtomicInteger();
-        Map<Character,Integer> groupDiscounts = new HashMap<>();
 
         for(char c : skus.toCharArray()){
 
@@ -53,8 +52,9 @@ public class CheckoutSolution {
 
             skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
-            if(groupDiscounts.keySet().stream().c){
-
+            if(groupDiscounts.keySet().stream()
+                    .anyMatch(key -> key.indexOf(c) != -1)){
+                System.out.println(c);
             }
         }
 
@@ -96,3 +96,4 @@ public class CheckoutSolution {
         return null;
     }
 }
+

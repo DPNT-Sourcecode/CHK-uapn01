@@ -37,7 +37,18 @@ public class CheckoutSolutionTest {
         assertThat(chk.checkout("FFF"), equalTo(20));
         assertThat(chk.checkout("FFFF"), equalTo(30));
         assertThat(chk.checkout("FFFFFF"), equalTo(40));
+
         assertThat(chk.checkout("X"), equalTo(-1));
     }
+
+    @Test
+    public void checkout_test5() {
+        assertThat(chk.checkout("SAGFT"), equalTo(40));
+
+    }
+
+
+
 }
+
 
