@@ -88,6 +88,7 @@ public class CheckoutSolution {
                     availableGroups.clear();
                 }
             }
+            System.out.println(totalCheckout);
 
         }
 
@@ -132,6 +133,7 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
 

@@ -43,15 +43,16 @@ public class CheckoutSolutionTest {
 
     @Test
     public void checkout_test5() {
-        /*assertThat(chk.checkout("SSS"), equalTo(45));
+        assertThat(chk.checkout("SSS"), equalTo(45));
         assertThat(chk.checkout("STS"), equalTo(45));
         assertThat(chk.checkout("SSSS"), equalTo(65));
-        assertThat(chk.checkout("S"), equalTo(20));*/
-        assertThat(chk.checkout("SSSZZ"), equalTo(40));
+        assertThat(chk.checkout("S"), equalTo(20));
+        assertThat(chk.checkout("SSSZZ"), equalTo(85));
 
     }
 
 
 
 }
+
 
