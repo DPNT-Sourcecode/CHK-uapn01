@@ -45,26 +45,24 @@ public class CheckoutSolution {
 
     public Integer checkout(String skus) {
 
-        Map<Character, Integer> skuPerCheckout = new HashMap<>();
-        var totalCheckout = new AtomicInteger();
-        Map<Character,Integer> availableGroups = new HashMap<>();
-
         for(char c : skus.toCharArray()){
-
             if(getSKUById(c) == null)
                 return -1;
         }
+
+        Map<Character, Integer> skuPerCheckout = new HashMap<>();
+        var totalCheckout = new AtomicInteger();
+        Map<Character,Integer> availableGroups = new HashMap<>();
 
         List<Character> sortedByPrice = skus.chars()
                 .mapToObj(c -> (char) c).sorted((a, b) -> Integer.compare(
                         getSKUById(b).getUnitPrice(),
                         getSKUById(a).getUnitPrice())).toList();
 
-
+        System.out.println(sortedByPrice);
         for(char c : sortedByPrice){
-            
-            skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
+            skuPerCheckout.put(c,(!skuPerCheckout.containsKey((Character) c)) ? 1 : skuPerCheckout.get(c) + 1);
 
             if(groupDiscounts.keySet().stream()
                     .anyMatch(key -> key.indexOf(c) != -1)){
@@ -78,18 +76,8 @@ public class CheckoutSolution {
                 if(availableGroups.values().stream().mapToInt(Integer::intValue).sum() == discount.quantityNeeded){
                     totalCheckout.addAndGet(discount.price);
 
-                    List<Character> sortedByPrice = new ArrayList<>(skuPerCheckout.keySet().stream()
-                            .toList());
-
-                    sortedByPrice.sort(
-                            (a,b) -> Integer.compare(
-                                    getSKUById(b).getUnitPrice(),
-                                    getSKUById(a).getUnitPrice())
-                    );
-
                     var toBeRemoved = 3;
-
-                    for(char cartItem : sortedByPrice){
+                    for(char cartItem : availableGroups.keySet()){
                         if(groupKey.get().indexOf(cartItem) != -1 && toBeRemoved > 0){
                             var min = Math.min(skuPerCheckout.get(cartItem),toBeRemoved);
                             skuPerCheckout.put(cartItem,skuPerCheckout.get(cartItem) - min);
@@ -101,12 +89,7 @@ public class CheckoutSolution {
                 }
             }
 
-
-
         }
-
-
-
 
 
         skuPerCheckout.forEach((sku, count) ->{
@@ -149,5 +132,6 @@ public class CheckoutSolution {
         return null;
     }
 }
+
 
 
